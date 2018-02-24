@@ -1,12 +1,28 @@
+
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+// import * as stuffActions from '../../actions/stuffActions';
+import * as stuffActions from '../../../actions/stuffActions';
+
 import React, { Component } from 'react';
 class Header extends Component {
-    state = {}
+    constructor(props, context) {
+        super(props, context);
+        this.updateShopTitle = this.updateShopTitle.bind(this);
+    }
+    // componentWillMount() { // HERE WE ARE TRIGGERING THE ACTION
+    //     this.props.stuffActions.initStuff();
+    //   }
+    updateShopTitle(){
+        this.props.stuffActions.updateStuff('uShop');
+    };
     render() {
+        console.log(this.props);
         return (
             <nav className="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
                 <div className="container">
                     <a className="navbar-brand" href="/">
-                        <strong>Navbar</strong>
+                        <strong>{this.props.stuffs.stuff}</strong>
                     </a>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -29,7 +45,7 @@ class Header extends Component {
                                 <a className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown
                         </a>
                                 <div className="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-                                    <a className="dropdown-item" href="/">Action</a>
+                                    <button className="dropdown-item" onClick={this.updateShopTitle}>Action</button>
                                     <a className="dropdown-item" href="/">Another action</a>
                                     <a className="dropdown-item" href="/">Something else here</a>
                                 </div>
@@ -45,4 +61,20 @@ class Header extends Component {
     }
 }
 
-export default Header;
+
+function mapStateToProps(state) {
+    return {
+      stuffs: state
+    };
+  }
+  
+  function mapDispatchToProps(dispatch) {
+    return {
+      stuffActions: bindActionCreators(stuffActions, dispatch)
+    };
+  }
+  
+  export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Header);
