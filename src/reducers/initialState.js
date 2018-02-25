@@ -5,5 +5,6 @@
 // };
 
 export default {
-    stuff: 'ShopUs'
+    stuff: 'ShopUs',
+    stuffApiData:[]
 };

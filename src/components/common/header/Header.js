@@ -1,6 +1,6 @@
 
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 // import * as stuffActions from '../../actions/stuffActions';
 import * as stuffActions from '../../../actions/stuffActions';
 
@@ -9,12 +9,17 @@ class Header extends Component {
     constructor(props, context) {
         super(props, context);
         this.updateShopTitle = this.updateShopTitle.bind(this);
+        this.fetchData = this.fetchData.bind(this);
     }
     // componentWillMount() { // HERE WE ARE TRIGGERING THE ACTION
     //     this.props.stuffActions.initStuff();
     //   }
-    updateShopTitle(){
+    updateShopTitle() {
         this.props.stuffActions.updateStuff('uShop');
+    };
+
+    fetchData() {
+        this.props.stuffActions.fetchStuff();
     };
     render() {
         console.log(this.props);
@@ -22,7 +27,7 @@ class Header extends Component {
             <nav className="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
                 <div className="container">
                     <a className="navbar-brand" href="/">
-                        <strong>{this.props.stuffs.stuff}</strong>
+                        <strong>{this.props.rdStore.stuff}</strong>
                     </a>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -46,13 +51,13 @@ class Header extends Component {
                         </a>
                                 <div className="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
                                     <button className="dropdown-item" onClick={this.updateShopTitle}>Action</button>
-                                    <a className="dropdown-item" href="/">Another action</a>
+                                    <button className="dropdown-item" onClick={this.fetchData}>Another action</button>
                                     <a className="dropdown-item" href="/">Something else here</a>
                                 </div>
                             </li>
                         </ul>
                         <form className="form-inline">
-                            <input className="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" />
+                            <input className="form-control mr-sm-2" type="text" placeholder={this.props.rdStore.stuffApiData[0]?this.props.rdStore.stuffApiData[0].body:'Search'} aria-label="Search" />
                         </form>
                     </div>
                 </div>
@@ -63,18 +68,19 @@ class Header extends Component {
 
 
 function mapStateToProps(state) {
+    debugger;
     return {
-      stuffs: state
+        rdStore: state.stuff
     };
-  }
-  
-  function mapDispatchToProps(dispatch) {
+}
+
+function mapDispatchToProps(dispatch) {
     return {
-      stuffActions: bindActionCreators(stuffActions, dispatch)
+        stuffActions: bindActionCreators(stuffActions, dispatch)
     };
-  }
-  
-  export default connect(
+}
+
+export default connect(
     mapStateToProps,
     mapDispatchToProps
-  )(Header);
+)(Header);

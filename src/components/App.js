@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import Header from './common/header/Header';
 import './App.css';
 
-// import * as stuffActions from '../../../actions/stuffActions';
 import * as stuffActions from '../actions/stuffActions';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
 class App extends Component {
-  componentWillMount() { // HERE WE ARE TRIGGERING THE ACTION
+  componentWillMount() {
     this.props.stuffActions.initStuff();
   }
   render() {
@@ -22,9 +21,7 @@ class App extends Component {
 }
 
 function mapStateToProps(state, ownProps) {
-  return {
-    stuffs: state.stuffs
-  };
+  return {};
 }
 
 function mapDispatchToProps(dispatch) {
