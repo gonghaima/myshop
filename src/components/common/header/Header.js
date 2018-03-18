@@ -41,23 +41,28 @@ class Header extends Component {
                                 </a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="/">Features</a>
+                                <a className="nav-link" href="/">Services</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="/">Pricing</a>
+                                <a className="nav-link" href="/">Shop</a>
                             </li>
-                            <li className="nav-item btn-group">
-                                <a className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown
-                        </a>
+                            <li className="nav-item">
+                                <a className="nav-link" href="/">Portfolio</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" href="/">Contact</a>
+                            </li>
+                            {/* <li className="nav-item btn-group">
+                                <a className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
                                 <div className="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
                                     <button className="dropdown-item" onClick={this.updateShopTitle}>Action</button>
                                     <button className="dropdown-item" onClick={this.fetchData}>Another action</button>
                                     <a className="dropdown-item" href="/">Something else here</a>
                                 </div>
-                            </li>
+                            </li> */}
                         </ul>
                         <form className="form-inline">
-                            <input className="form-control mr-sm-2" type="text" placeholder={this.props.rdStore.stuffApiData[0]?this.props.rdStore.stuffApiData[0].body:'Search'} aria-label="Search" />
+                            <input className="form-control mr-sm-2" type="text" placeholder={this.props.rdStore.stuffApiData[0] ? this.props.rdStore.stuffApiData[0].body : 'Search'} aria-label="Search" />
                         </form>
                     </div>
                 </div>
